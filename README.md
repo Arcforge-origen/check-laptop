@@ -1,2 +1,235 @@
-# check-laptop
-Laptop checking tool before sale for both buyer and seller
+====================================================================
+  GUIDE D'UTILISATION - check-laptop.ps1
+  Diagnostic complet avant d'acheter / de garder le PC portable
+====================================================================
+
+A QUOI CA SERT
+--------------
+Ce script verifie automatiquement l'etat du PC (processeur, RAM,
+disque, batterie, carte graphique, ecrans, ventilateurs...) et
+propose ensuite des tests manuels guides (ecran, clavier, ports)
+pour reperer un defaut avant qu'il ne soit trop tard.
+
+Ca prend environ 10-15 minutes au total.
+
+
+ETAPE 1 - LANCER LE SCRIPT
+--------------------------
+1. Copier le fichier "check-laptop.ps1" sur le Bureau du PC a tester.
+2. Faire un CLIC DROIT dessus, puis choisir :
+   "Executer avec PowerShell"
+
+3. Si un message bleu de Windows bloque l'execution (secu normale) :
+   - Ouvrir le menu Demarrer, taper "PowerShell"
+   - Faire un CLIC DROIT sur "Windows PowerShell" > "Executer en tant
+     qu'administrateur"
+   - Dans la fenetre noire/bleue qui s'ouvre, taper cette ligne et
+     appuyer sur Entree :
+
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+   - Puis glisser le fichier check-laptop.ps1 dans la fenetre (ou
+     taper son chemin complet) et appuyer sur Entree.
+
+4. Repondre "O" (Oui) si Windows demande une confirmation.
+
+
+ETAPE 2 - LAISSER LE DIAGNOSTIC AUTOMATIQUE SE FAIRE
+-----------------------------------------------------
+Le script va afficher plein d'informations a l'ecran tout seul
+(CPU, RAM, disque, batterie, GPU, reseau, ecrans, evenements
+materiels...). Il n'y a rien a faire a ce moment-la, juste attendre
+quelques secondes que ca defile.
+
+A la fin, un rapport texte est sauvegarde automatiquement sur le
+Bureau : "rapport-diagnostic-[date].txt"
+Un rapport batterie detaille est aussi cree : "rapport-batterie.html"
+
+Si une ligne commence par [A VERIFIER], c'est un point suspect a
+regarder de plus pres.
+
+
+ETAPE 3 - LES TESTS A FAIRE SOI-MEME (menu a la fin)
+------------------------------------------------------
+Un petit menu apparait avec des chiffres a taper puis Entree :
+
+  1 = TEST ECRAN
+      Ouvre un ecran plein de couleur. Bien regarder chaque coin et
+      chaque bord de l'ecran (pixels morts, taches, bandes).
+      - Barre ESPACE = couleur suivante
+      - Touche G = grille pour reperer les pixels morts
+      - Touche ECHAP = fermer
+      Si le PC a un 2e ecran (type ScreenPad Plus), le script demande
+      lequel des deux tester : refaire le test sur les deux.
+
+  2 = TEST CLAVIER
+      Une image du clavier apparait a l'ecran. Appuyer sur TOUTES les
+      touches du clavier une par une (y compris Fn, fleches, touches
+      du haut). Chaque bouton devient VERT quand la touche est bien
+      detectee. Un compteur indique combien de touches ont ete
+      testees. Une touche qui ne fait rien s'allumer = touche morte.
+
+  3 = TEST DES PORTS
+      Brancher successivement une cle USB, une souris, un cable
+      HDMI, une carte SD... dans CHAQUE port du PC, un par un.
+      Chaque branchement doit s'afficher a l'ecran avec l'heure.
+      Si rien ne s'affiche en branchant quelque chose : le port ne
+      fonctionne pas.
+      (le port jack casque ne peut pas etre verifie comme ca : le
+      tester juste en ecoutant de la musique au casque)
+
+  4 = TEST DE CHARGE
+      Fait chauffer le processeur et la carte graphique pendant
+      1 minute pour verifier que le PC ne plante pas, ne redemarre
+      pas tout seul, et ne fait pas de bruit anormal sous charge.
+      A la fin, il revérifie automatiquement s'il y a eu un souci.
+
+  5 = DETAIL DES EVENEMENTS MATERIELS
+      Montre en detail si Windows a deja enregistre des erreurs
+      materielles (dans les 30 derniers jours). Utile si le PC n'est
+      pas totalement neuf.
+
+  0 = Quitter le script
+
+
+QUOI FAIRE SI UN PROBLEME EST TROUVE
+--------------------------------------
+- Prendre une photo/capture d'ecran du message d'erreur ou du point
+  [A VERIFIER].
+- Garder le rapport "rapport-diagnostic-[date].txt" et
+  "rapport-batterie.html" (sur le Bureau) : ils prouvent l'etat du
+  PC au moment de l'achat, utile en cas de litige avec le vendeur.
+- Ne pas hesiter a refuser l'achat ou demander une reduction si un
+  defaut serieux apparait (ecran, clavier, disque en mauvaise sante,
+  batterie tres usee, erreurs materielles frequentes).
+
+
+A SAVOIR
+--------
+- Le script ne modifie et n'endommage rien : il ne fait que lire des
+  informations et lancer de petits tests visuels.
+- Il ne remplace pas un controle visuel du chassis, des charnieres,
+  et une ecoute du bruit des ventilateurs : faire ca aussi a la main.
+- Certaines infos (sante disque, benchmark) sont plus completes si
+  le script est lance "en tant qu'administrateur" (voir etape 1).
+
+
+
+
+
+====================================================================
+  USER GUIDE - check-laptop.ps1
+  Comprehensive diagnostic check before buying or keeping a laptop
+====================================================================
+
+WHAT IT'S FOR
+--------------
+This script automatically checks the laptop’s status (processor, RAM,
+hard drive, battery, graphics card, screens, fans, etc.) and
+then suggests guided manual tests (screen, keyboard, ports)
+to identify a defect before it’s too late.
+
+It takes about 10–15 minutes in total.
+
+
+STEP 1 - RUN THE SCRIPT
+--------------------------
+1. Copy the "check-laptop.ps1" file to the Desktop of the laptop you want to test.
+2. RIGHT-CLICK on it, then select:
+   "Run with PowerShell"
+
+3. If a blue Windows message blocks execution (standard security):
+   - Open the Start menu, type "PowerShell"
+   - RIGHT-CLICK on "Windows PowerShell" > "Run as
+     administrator"
+   - In the black/blue window that opens, type this line and
+     press Enter:
+
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+   - Then drag the check-laptop.ps1 file into the window (or
+     type its full path) and press Enter.
+
+4. Answer "O" (Yes) if Windows asks for confirmation.
+
+
+STEP 2 - LET THE AUTOMATIC DIAGNOSTIC RUN
+-----------------------------------------------------
+The script will display a lot of information on the screen automatically
+(CPU, RAM, disk, battery, GPU, network, displays, hardware
+events...). There’s nothing to do at this point—just wait
+a few seconds for the information to scroll by.
+
+When it’s finished, a text report is automatically saved to the
+Desktop: “diagnostic-report-[date].txt”
+A detailed battery report is also created: “battery-report.html”
+
+If a line begins with [TO BE CHECKED], it’s a suspicious issue that
+needs closer inspection.
+
+
+STEP 3 - TESTS TO PERFORM YOURSELF (menu at the end)
+------------------------------------------------------
+A small menu appears with numbers to enter, followed by Enter:
+
+  1 = SCREEN TEST
+      Opens a full-screen color display. Carefully inspect every corner and
+      every edge of the screen (dead pixels, spots, streaks).
+      - SPACE BAR = next color
+      - G key = grid to locate dead pixels
+      - ESC key = close
+      If the PC has a second screen (such as ScreenPad Plus), the script will ask
+      which one to test: repeat the test on both.
+
+  2 = KEYBOARD TEST
+      An image of the keyboard appears on the screen. Press ALL the
+      keys on the keyboard one by one (including Fn, arrow keys, and
+      top row keys). Each button turns GREEN when the key is successfully
+      detected. A counter shows how many keys have been
+      tested. If a key does not light up when pressed = dead key.
+
+  3 = PORT TEST
+      Plug in a USB flash drive, a mouse, an HDMI cable,
+      an SD card, etc., one after another into EACH port on the PC, one at a time.
+      Each connection should appear on the screen along with the time.
+      If nothing appears when you plug something in: the port is
+      not working.
+      (The headphone jack cannot be tested this way:
+      test it by simply listening to music with headphones.)
+
+  4 = LOAD TEST
+      Puts the processor and graphics card under load for
+      1 minute to verify that the PC doesn’t crash, doesn’t restart
+      on its own, and doesn’t make any unusual noises under load.
+      At the end, it automatically checks again to see if there was a problem.
+
+  5 = DETAILS OF HARDWARE EVENTS
+      Shows in detail whether Windows has already logged any hardware errors
+      (within the last 30 days). Useful if the PC is
+      not brand new.
+
+  0 = Exit the script
+
+
+WHAT TO DO IF A PROBLEM IS FOUND
+--------------------------------------
+- Take a photo or screenshot of the error message or the
+  [TO BE CHECKED] item.
+- Save the "diagnostic-report-[date].txt" and
+  "battery-report.html" files (on the Desktop): they document the condition of the
+  PC at the time of purchase, which is useful in case of a dispute with the seller.
+- Don’t hesitate to refuse the purchase or ask for a discount if a
+  serious defect appears (screen, keyboard, failing hard drive,
+  heavily worn battery, frequent hardware errors).
+
+
+
+
+GOOD TO KNOW
+--------
+- The script does not modify or damage anything: it simply reads
+  information and runs small visual tests.
+- It does not replace a visual inspection of the chassis and hinges,
+  or listening for fan noise: be sure to do these checks manually as well.
+- Some information (hard drive health, benchmark) is more comprehensive if
+  the script is run “as an administrator” (see step 1).
