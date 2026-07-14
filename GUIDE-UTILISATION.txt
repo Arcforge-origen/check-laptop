@@ -112,3 +112,127 @@ A SAVOIR
   et une ecoute du bruit des ventilateurs : faire ca aussi a la main.
 - Certaines infos (sante disque, benchmark) sont plus completes si
   le script est lance "en tant qu'administrateur" (voir etape 1).
+
+
+
+
+
+====================================================================
+  USER GUIDE - check-laptop.ps1
+  Comprehensive diagnostic check before buying or keeping a laptop
+====================================================================
+
+WHAT IT'S FOR
+--------------
+This script automatically checks the laptop’s status (processor, RAM,
+hard drive, battery, graphics card, screens, fans, etc.) and
+then suggests guided manual tests (screen, keyboard, ports)
+to identify a defect before it’s too late.
+
+It takes about 10–15 minutes in total.
+
+
+STEP 1 - RUN THE SCRIPT
+--------------------------
+1. Copy the "check-laptop.ps1" file to the Desktop of the laptop you want to test.
+2. RIGHT-CLICK on it, then select:
+   "Run with PowerShell"
+
+3. If a blue Windows message blocks execution (standard security):
+   - Open the Start menu, type "PowerShell"
+   - RIGHT-CLICK on "Windows PowerShell" > "Run as
+     administrator"
+   - In the black/blue window that opens, type this line and
+     press Enter:
+
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+   - Then drag the check-laptop.ps1 file into the window (or
+     type its full path) and press Enter.
+
+4. Answer "O" (Yes) if Windows asks for confirmation.
+
+
+STEP 2 - LET THE AUTOMATIC DIAGNOSTIC RUN
+-----------------------------------------------------
+The script will display a lot of information on the screen automatically
+(CPU, RAM, disk, battery, GPU, network, displays, hardware
+events...). There’s nothing to do at this point—just wait
+a few seconds for the information to scroll by.
+
+When it’s finished, a text report is automatically saved to the
+Desktop: “diagnostic-report-[date].txt”
+A detailed battery report is also created: “battery-report.html”
+
+If a line begins with [TO BE CHECKED], it’s a suspicious issue that
+needs closer inspection.
+
+
+STEP 3 - TESTS TO PERFORM YOURSELF (menu at the end)
+------------------------------------------------------
+A small menu appears with numbers to enter, followed by Enter:
+
+  1 = SCREEN TEST
+      Opens a full-screen color display. Carefully inspect every corner and
+      every edge of the screen (dead pixels, spots, streaks).
+      - SPACE BAR = next color
+      - G key = grid to locate dead pixels
+      - ESC key = close
+      If the PC has a second screen (such as ScreenPad Plus), the script will ask
+      which one to test: repeat the test on both.
+
+  2 = KEYBOARD TEST
+      An image of the keyboard appears on the screen. Press ALL the
+      keys on the keyboard one by one (including Fn, arrow keys, and
+      top row keys). Each button turns GREEN when the key is successfully
+      detected. A counter shows how many keys have been
+      tested. If a key does not light up when pressed = dead key.
+
+  3 = PORT TEST
+      Plug in a USB flash drive, a mouse, an HDMI cable,
+      an SD card, etc., one after another into EACH port on the PC, one at a time.
+      Each connection should appear on the screen along with the time.
+      If nothing appears when you plug something in: the port is
+      not working.
+      (The headphone jack cannot be tested this way:
+      test it by simply listening to music with headphones.)
+
+  4 = LOAD TEST
+      Puts the processor and graphics card under load for
+      1 minute to verify that the PC doesn’t crash, doesn’t restart
+      on its own, and doesn’t make any unusual noises under load.
+      At the end, it automatically checks again to see if there was a problem.
+
+  5 = DETAILS OF HARDWARE EVENTS
+      Shows in detail whether Windows has already logged any hardware errors
+      (within the last 30 days). Useful if the PC is
+      not brand new.
+
+  0 = Exit the script
+
+
+WHAT TO DO IF A PROBLEM IS FOUND
+--------------------------------------
+- Take a photo or screenshot of the error message or the
+  [TO BE CHECKED] item.
+- Save the "diagnostic-report-[date].txt" and
+  "battery-report.html" files (on the Desktop): they document the condition of the
+  PC at the time of purchase, which is useful in case of a dispute with the seller.
+- Don’t hesitate to refuse the purchase or ask for a discount if a
+  serious defect appears (screen, keyboard, failing hard drive,
+  heavily worn battery, frequent hardware errors).
+
+
+
+
+GOOD TO KNOW
+--------
+- The script does not modify or damage anything: it simply reads
+  information and runs small visual tests.
+- It does not replace a visual inspection of the chassis and hinges,
+  or listening for fan noise: be sure to do these checks manually as well.
+- Some information (hard drive health, benchmark) is more comprehensive if
+  the script is run “as an administrator” (see step 1).
+
+
+Traduit avec DeepL (https://dee.pl/app)
